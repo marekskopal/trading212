@@ -16,11 +16,12 @@ use MarekSkopal\Trading212\Exception\InvalidArgumentException;
 class HistoricalItems extends Trading212Api
 {
     /** @return Pagination<Order> */
-    public function orders(?string $ticker = null, int $limit = 20): Pagination
+    public function orders(?int $cursor = null, ?string $ticker = null, int $limit = 20): Pagination
     {
         $response = $this->client->get(
             path: '/api/v0/equity/history/orders',
             queryParams: [
+                'cursor' => $cursor,
                 'ticker' => $ticker,
                 'limit' => $limit,
             ],
@@ -32,11 +33,12 @@ class HistoricalItems extends Trading212Api
     }
 
     /** @return Pagination<Dividend> */
-    public function dividends(?string $ticker = null, int $limit = 20): Pagination
+    public function dividends(?int $cursor = null, ?string $ticker = null, int $limit = 20): Pagination
     {
         $response = $this->client->get(
             path: '/api/v0/history/dividends',
             queryParams: [
+                'cursor' => $cursor,
                 'ticker' => $ticker,
                 'limit' => $limit,
             ],
@@ -74,11 +76,12 @@ class HistoricalItems extends Trading212Api
     }
 
     /** @return Pagination<Transaction> */
-    public function transactionList(int $limit = 20): Pagination
+    public function transactionList(?int $cursor = null, int $limit = 20): Pagination
     {
         $response = $this->client->get(
             path: '/api/v0/history/transactions',
             queryParams: [
+                'cursor' => $cursor,
                 'limit' => $limit,
             ],
         );
