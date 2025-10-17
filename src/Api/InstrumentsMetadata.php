@@ -7,7 +7,7 @@ namespace MarekSkopal\Trading212\Api;
 use MarekSkopal\Trading212\Dto\InstrumentsMetadata\Exchange;
 use MarekSkopal\Trading212\Dto\InstrumentsMetadata\Instrument;
 
-class InstrumentsMetadata extends Trading212Api
+readonly class InstrumentsMetadata extends Trading212Api
 {
     /** @return list<Exchange> */
     public function exchangeList(): array

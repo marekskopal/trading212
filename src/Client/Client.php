@@ -14,18 +14,18 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 
-class Client implements ClientInterface
+readonly class Client implements ClientInterface
 {
     private const BaseUri = 'https://live.trading212.com';
     private const DemoBaseUri = 'https://demo.trading212.com';
 
-    private readonly \Psr\Http\Client\ClientInterface $httpClient;
+    private \Psr\Http\Client\ClientInterface $httpClient;
 
-    private readonly RequestFactoryInterface $requestFactory;
+    private RequestFactoryInterface $requestFactory;
 
-    private readonly StreamFactoryInterface $streamFactory;
+    private StreamFactoryInterface $streamFactory;
 
-    public function __construct(private readonly Config $config)
+    public function __construct(private Config $config)
     {
         $this->httpClient = Psr18ClientDiscovery::find();
         $this->requestFactory = Psr17FactoryDiscovery::findRequestFactory();

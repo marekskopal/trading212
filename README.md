@@ -19,7 +19,7 @@ use MarekSkopal\Trading212\Config\Config;
 $trading212 = new Trading212(new Config('<yourApiKey>'));
 
 // Get exchange list
-$response = $trading212->getInstrumentsMetadata()->exchangeList();
+$response = $trading212->instrumentsMetadata->exchangeList();
 ```
 
 ## Covered endpoints

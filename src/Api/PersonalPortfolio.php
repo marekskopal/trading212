@@ -6,7 +6,7 @@ namespace MarekSkopal\Trading212\Api;
 
 use MarekSkopal\Trading212\Dto\PersonalPortfolio\Position;
 
-class PersonalPortfolio extends Trading212Api
+readonly class PersonalPortfolio extends Trading212Api
 {
     /** @return list<Position> */
     public function allOpenPositions(): array

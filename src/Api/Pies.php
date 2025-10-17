@@ -8,7 +8,7 @@ use MarekSkopal\Trading212\Dto\Pies\CreatePie;
 use MarekSkopal\Trading212\Dto\Pies\Pie;
 use MarekSkopal\Trading212\Dto\Pies\PieItem;
 
-class Pies extends Trading212Api
+readonly class Pies extends Trading212Api
 {
     /** @return list<PieItem> */
     public function pies(): array

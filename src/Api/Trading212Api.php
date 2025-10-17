@@ -6,9 +6,9 @@ namespace MarekSkopal\Trading212\Api;
 
 use MarekSkopal\Trading212\Client\ClientInterface;
 
-abstract class Trading212Api
+abstract readonly class Trading212Api
 {
-    public function __construct(protected readonly ClientInterface $client)
+    public function __construct(protected ClientInterface $client)
     {
     }
 }

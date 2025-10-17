@@ -6,7 +6,7 @@ namespace MarekSkopal\Trading212\Utils;
 
 use DateTimeInterface;
 
-class DateTimeUtils
+readonly class DateTimeUtils
 {
     private const FormatZulu = 'Y-m-d\TH:i:sp';
 

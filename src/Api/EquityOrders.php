@@ -10,7 +10,7 @@ use MarekSkopal\Trading212\Dto\EquityOrders\Order;
 use MarekSkopal\Trading212\Dto\EquityOrders\StopLimitOrder;
 use MarekSkopal\Trading212\Dto\EquityOrders\StopOrder;
 
-class EquityOrders extends Trading212Api
+readonly class EquityOrders extends Trading212Api
 {
     /** @return list<Order> */
     public function fetchAll(): array

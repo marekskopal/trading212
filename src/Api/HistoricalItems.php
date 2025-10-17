@@ -13,7 +13,7 @@ use MarekSkopal\Trading212\Dto\HistoricalItems\Transaction;
 use MarekSkopal\Trading212\Dto\Pagination;
 use MarekSkopal\Trading212\Exception\InvalidArgumentException;
 
-class HistoricalItems extends Trading212Api
+readonly class HistoricalItems extends Trading212Api
 {
     /** @return Pagination<Order> */
     public function orders(?int $cursor = null, ?string $ticker = null, int $limit = 20): Pagination

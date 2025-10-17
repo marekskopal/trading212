@@ -7,7 +7,7 @@ namespace MarekSkopal\Trading212\Api;
 use MarekSkopal\Trading212\Dto\AccountData\AccountCash;
 use MarekSkopal\Trading212\Dto\AccountData\AccountMetadata;
 
-class AccountData extends Trading212Api
+readonly class AccountData extends Trading212Api
 {
     public function accountCash(): AccountCash
     {
