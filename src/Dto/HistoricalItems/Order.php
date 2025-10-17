@@ -6,6 +6,37 @@ namespace MarekSkopal\Trading212\Dto\HistoricalItems;
 
 use DateTimeImmutable;
 
+/**
+ * @phpstan-type OrderType array{
+ *      dateCreated: string,
+ *      dateExecuted: string|null,
+ *      dateModified: string,
+ *      executor: string|null,
+ *      fillCost: float|null,
+ *      fillId: int,
+ *      fillPrice: float,
+ *      fillResult: float|null,
+ *      fillType: string,
+ *      filledQuantity: float|null,
+ *      filledValue: float|null,
+ *      id: int,
+ *      limitPrice: float|null,
+ *      orderedQuantity: float|null,
+ *      orderedValue: float|null,
+ *      parentOrder: int,
+ *      status: string,
+ *      stopPrice: float|null,
+ *      taxes: list<array{
+ *          fillId: string,
+ *          name: string,
+ *          quantity: float,
+ *          timeCharged: string,
+ *      }>,
+ *      ticker: string,
+ *      timeValidity: string|null,
+ *      type: string,
+ *  }
+ */
 readonly class Order
 {
     /** @param list<Tax> $taxes */
@@ -15,8 +46,8 @@ readonly class Order
         public DateTimeImmutable $dateModified,
         public ?string $executor,
         public ?float $fillCost,
-        public int $fillId,
-        public float $fillPrice,
+        public ?int $fillId,
+        public ?float $fillPrice,
         public ?float $fillResult,
         public string $fillType,
         public ?float $filledQuantity,
@@ -36,35 +67,7 @@ readonly class Order
     }
 
     /**
-     * @param list<array{
-     *     dateCreated: string,
-     *     dateExecuted: string|null,
-     *     dateModified: string,
-     *     executor: string|null,
-     *     fillCost: float|null,
-     *     fillId: int,
-     *     fillPrice: float,
-     *     fillResult: float|null,
-     *     fillType: string,
-     *     filledQuantity: float|null,
-     *     filledValue: float|null,
-     *     id: int,
-     *     limitPrice: float|null,
-     *     orderedQuantity: float|null,
-     *     orderedValue: float|null,
-     *     parentOrder: int,
-     *     status: string,
-     *     stopPrice: float|null,
-     *     taxes: list<array{
-     *         fillId: string,
-     *         name: string,
-     *         quantity: float,
-     *         timeCharged: string,
-     *     }>,
-     *     ticker: string,
-     *     timeValidity: string|null,
-     *     type: string,
-     * }> $data
+     * @param list<OrderType> $data
      * @return list<Order>
      */
     public static function fromArrayList(array $data): array
@@ -72,37 +75,7 @@ readonly class Order
         return array_map(fn(array $order) => self::fromArray($order), $data);
     }
 
-    /**
-     * @param array{
-     *     dateCreated: string,
-     *     dateExecuted: string|null,
-     *     dateModified: string,
-     *     executor: string|null,
-     *     fillCost: float|null,
-     *     fillId: int,
-     *     fillPrice: float,
-     *     fillResult: float|null,
-     *     fillType: string,
-     *     filledQuantity: float|null,
-     *     filledValue: float|null,
-     *     id: int,
-     *     limitPrice: float|null,
-     *     orderedQuantity: float|null,
-     *     orderedValue: float|null,
-     *     parentOrder: int,
-     *     status: string,
-     *     stopPrice: float|null,
-     *     taxes: list<array{
-     *         fillId: string,
-     *         name: string,
-     *         quantity: float,
-     *         timeCharged: string,
-     *     }>,
-     *     ticker: string,
-     *     timeValidity: string|null,
-     *     type: string,
-     * } $data
-     */
+    /** @param OrderType $data */
     public static function fromArray(array $data): self
     {
         return new self(
