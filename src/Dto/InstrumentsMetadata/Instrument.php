@@ -6,6 +6,19 @@ namespace MarekSkopal\Trading212\Dto\InstrumentsMetadata;
 
 use DateTimeImmutable;
 
+/**
+ * @phpstan-type InstrumentType array{
+ *     addedOn: string,
+ *     currencyCode: string,
+ *     isin: string,
+ *     maxOpenQuantity: float,
+ *     name: string,
+ *     shortname?: string|null,
+ *     ticker: string,
+ *     type: string,
+ *     workingScheduleId: int,
+ *  }
+ */
 readonly class Instrument
 {
     public function __construct(
@@ -13,7 +26,6 @@ readonly class Instrument
         public string $currencyCode,
         public string $isin,
         public float $maxOpenQuantity,
-        public float $minTradeQuantity,
         public string $name,
         public ?string $shortname,
         public string $ticker,
@@ -25,39 +37,13 @@ readonly class Instrument
     /** @return list<Instrument> */
     public static function fromJsonList(string $json): array
     {
-        /**
-         * @var list<array{
-         *     addedOn: string,
-         *     currencyCode: string,
-         *     isin: string,
-         *     maxOpenQuantity: float,
-         *     minTradeQuantity: float,
-         *     name: string,
-         *     shortname?: string|null,
-         *     ticker: string,
-         *     type: string,
-         *     workingScheduleId: int,
-         *  }> $responseContents
-         */
+        /** @var list<InstrumentType> $responseContents */
         $responseContents = json_decode($json, associative: true);
 
         return array_map(fn(array $exchange) => self::fromArray($exchange), $responseContents);
     }
 
-    /**
-     * @param array{
-     *     addedOn: string,
-     *     currencyCode: string,
-     *     isin: string,
-     *     maxOpenQuantity: float,
-     *     minTradeQuantity: float,
-     *     name: string,
-     *     shortname?: string|null,
-     *     ticker: string,
-     *     type: string,
-     *     workingScheduleId: int,
-     *  } $data
-     */
+    /** @param InstrumentType $data */
     public static function fromArray(array $data): self
     {
         return new self(
@@ -65,7 +51,6 @@ readonly class Instrument
             currencyCode: $data['currencyCode'],
             isin: $data['isin'],
             maxOpenQuantity: $data['maxOpenQuantity'],
-            minTradeQuantity: $data['minTradeQuantity'],
             name: $data['name'],
             shortname: $data['shortname'] ?? null,
             ticker: $data['ticker'],
