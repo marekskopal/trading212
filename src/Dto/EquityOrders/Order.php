@@ -12,34 +12,34 @@ use MarekSkopal\Trading212\Enum\OrderTypeEnum;
 /**
  * @phpstan-type OrderType array{
  *     creationTime: string,
- *     filledQuantity: float,
- *     filledValue: float,
+ *     filledQuantity: float|null,
+ *     filledValue: float|null,
  *     id: int,
- *     limitPrice: float,
- *     quantity: float,
+ *     limitPrice: float|null,
+ *     quantity: float|null,
  *     status: value-of<OrderStatusEnum>,
- *     stopPrice: float,
+ *     stopPrice: float|null,
  *     strategy: value-of<OrderStrategyEnum>,
  *     ticker: string,
  *     type: value-of<OrderTypeEnum>,
- *     value: float,
+ *     value: float|null,
  *  }
  */
 readonly class Order
 {
     public function __construct(
         public DateTimeImmutable $creationTime,
-        public float $filledQuantity,
-        public float $filledValue,
+        public ?float $filledQuantity,
+        public ?float $filledValue,
         public int $id,
-        public float $limitPrice,
-        public float $quantity,
+        public ?float $limitPrice,
+        public ?float $quantity,
         public OrderStatusEnum $status,
-        public float $stopPrice,
+        public ?float $stopPrice,
         public OrderStrategyEnum $strategy,
         public string $ticker,
         public OrderTypeEnum $type,
-        public float $value,
+        public ?float $value,
     ) {
     }
 
