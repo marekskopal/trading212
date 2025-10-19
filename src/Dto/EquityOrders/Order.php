@@ -5,7 +5,26 @@ declare(strict_types=1);
 namespace MarekSkopal\Trading212\Dto\EquityOrders;
 
 use DateTimeImmutable;
+use MarekSkopal\Trading212\Enum\OrderStatusEnum;
+use MarekSkopal\Trading212\Enum\OrderStrategyEnum;
+use MarekSkopal\Trading212\Enum\OrderTypeEnum;
 
+/**
+ * @phpstan-type OrderType array{
+ *     creationTime: string,
+ *     filledQuantity: float,
+ *     filledValue: float,
+ *     id: int,
+ *     limitPrice: float,
+ *     quantity: float,
+ *     status: value-of<OrderStatusEnum>,
+ *     stopPrice: float,
+ *     strategy: value-of<OrderStrategyEnum>,
+ *     ticker: string,
+ *     type: value-of<OrderTypeEnum>,
+ *     value: float,
+ *  }
+ */
 readonly class Order
 {
     public function __construct(
@@ -15,11 +34,11 @@ readonly class Order
         public int $id,
         public float $limitPrice,
         public float $quantity,
-        public string $status,
+        public OrderStatusEnum $status,
         public float $stopPrice,
-        public string $strategy,
+        public OrderStrategyEnum $strategy,
         public string $ticker,
-        public string $type,
+        public OrderTypeEnum $type,
         public float $value,
     ) {
     }
@@ -27,22 +46,7 @@ readonly class Order
     /** @return list<Order> */
     public static function fromJsonList(string $json): array
     {
-        /**
-         * @var list<array{
-         *     creationTime: string,
-         *     filledQuantity: float,
-         *     filledValue: float,
-         *     id: int,
-         *     limitPrice: float,
-         *     quantity: float,
-         *     status: string,
-         *     stopPrice: float,
-         *     strategy: string,
-         *     ticker: string,
-         *     type: string,
-         *     value: float,
-         *  }> $responseContents
-         */
+        /** @var list<OrderType> $responseContents */
         $responseContents = json_decode($json, associative: true);
 
         return array_map(fn(array $order) => self::fromArray($order), $responseContents);
@@ -50,43 +54,13 @@ readonly class Order
 
     public static function fromJson(string $json): self
     {
-        /**
-         * @var array{
-         *     creationTime: string,
-         *     filledQuantity: float,
-         *     filledValue: float,
-         *     id: int,
-         *     limitPrice: float,
-         *     quantity: float,
-         *     status: string,
-         *     stopPrice: float,
-         *     strategy: string,
-         *     ticker: string,
-         *     type: string,
-         *     value: float,
-         *  } $responseContents
-         */
+        /** @var OrderType $responseContents */
         $responseContents = json_decode($json, associative: true);
 
         return self::fromArray($responseContents);
     }
 
-    /**
-     * @param array{
-     *     creationTime: string,
-     *     filledQuantity: float,
-     *     filledValue: float,
-     *     id: int,
-     *     limitPrice: float,
-     *     quantity: float,
-     *     status: string,
-     *     stopPrice: float,
-     *     strategy: string,
-     *     ticker: string,
-     *     type: string,
-     *     value: float,
-     * } $data
-     */
+    /** @param OrderType $data */
     public static function fromArray(array $data): self
     {
         return new self(
@@ -96,11 +70,11 @@ readonly class Order
             id: $data['id'],
             limitPrice: $data['limitPrice'],
             quantity: $data['quantity'],
-            status: $data['status'],
+            status: OrderStatusEnum::from($data['status']),
             stopPrice: $data['stopPrice'],
-            strategy: $data['strategy'],
+            strategy: OrderStrategyEnum::from($data['strategy']),
             ticker: $data['ticker'],
-            type: $data['type'],
+            type: OrderTypeEnum::from($data['type']),
             value: $data['value'],
         );
     }

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace MarekSkopal\Trading212\Dto\HistoricalItems;
 
 use DateTimeImmutable;
+use MarekSkopal\Trading212\Enum\OrderStatusEnum;
+use MarekSkopal\Trading212\Enum\OrderTypeEnum;
 
 /**
  * @phpstan-type OrderType array{
@@ -24,7 +26,7 @@ use DateTimeImmutable;
  *      orderedQuantity: float|null,
  *      orderedValue: float|null,
  *      parentOrder: int,
- *      status: string,
+ *      status: value-of<OrderStatusEnum>,
  *      stopPrice: float|null,
  *      taxes: list<array{
  *          fillId: string,
@@ -34,7 +36,7 @@ use DateTimeImmutable;
  *      }>,
  *      ticker: string,
  *      timeValidity: string|null,
- *      type: string,
+ *      type: value-of<OrderTypeEnum>,
  *  }
  */
 readonly class Order
@@ -57,12 +59,12 @@ readonly class Order
         public ?float $orderedQuantity,
         public ?float $orderedValue,
         public int $parentOrder,
-        public string $status,
+        public OrderStatusEnum $status,
         public ?float $stopPrice,
         public array $taxes,
         public string $ticker,
         public ?string $timeValidity,
-        public string $type,
+        public OrderTypeEnum $type,
     ) {
     }
 
@@ -95,12 +97,12 @@ readonly class Order
             orderedQuantity: $data['orderedQuantity'],
             orderedValue: $data['orderedValue'],
             parentOrder: $data['parentOrder'],
-            status: $data['status'],
+            status: OrderStatusEnum::from($data['status']),
             stopPrice: $data['stopPrice'],
             taxes: array_map(fn(array $tax) => Tax::fromArray($tax), $data['taxes']),
             ticker: $data['ticker'],
             timeValidity: $data['timeValidity'],
-            type: $data['type'],
+            type: OrderTypeEnum::from($data['type']),
         );
     }
 }
