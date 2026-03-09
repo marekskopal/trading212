@@ -62,7 +62,7 @@ readonly class HistoricalItems extends Trading212Api
 
     public function exportCsv(ExportCsv $exportCsv): Report
     {
-        if ($exportCsv->timeTo->diff($exportCsv->timeFrom)->y >= 1) {
+        if ($exportCsv->timeFrom->diff($exportCsv->timeTo)->days >= 365) {
             throw new InvalidArgumentException('The maximum range is 1 year.');
         }
 

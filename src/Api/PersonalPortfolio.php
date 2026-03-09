@@ -23,7 +23,7 @@ readonly class PersonalPortfolio extends Trading212Api
     public function position(string $ticker): Position
     {
         $response = $this->client->get(
-            path: '/api/v0/equity/portfolio' . $ticker,
+            path: '/api/v0/equity/portfolio/' . $ticker,
             queryParams: [],
         );
 
@@ -33,7 +33,7 @@ readonly class PersonalPortfolio extends Trading212Api
     public function searchPosition(string $ticker): Position
     {
         $response = $this->client->post(
-            path: '/api/v0/equity/portfolio' . $ticker,
+            path: '/api/v0/equity/portfolio/' . $ticker,
             queryParams: [],
             body: new SearchPosition($ticker),
         );

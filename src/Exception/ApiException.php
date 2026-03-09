@@ -16,6 +16,7 @@ abstract class ApiException extends \Exception
         return match ($code) {
             400 => new BadRequestException('Bad Request'),
             401 => new UnauthorizedException('Unauthorized'),
+            403 => new ForbiddenException('Forbidden'),
             404 => new NotFoundException('Not Found'),
             408 => new TimeoutException('Timeout'),
             429 => new TooManyRequestsException('Too Many Requests'),
