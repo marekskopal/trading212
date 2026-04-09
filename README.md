@@ -1,6 +1,6 @@
 # Trading212 API client library for PHP
 
-Unofficial PHP API client library for the [Trading212](https://www.trading212.com) API service. 
+Unofficial PHP API client library for the [Trading212](https://www.trading212.com) API service.
 
 
 ## Install
@@ -16,7 +16,7 @@ use MarekSkopal\Trading212\Trading212;
 use MarekSkopal\Trading212\Config\Config;
 
 // Create Trading212 instance
-$trading212 = new Trading212(new Config('<yourApiKey>'));
+$trading212 = new Trading212(new Config('<yourApiKey>', '<yourApiSecret>'));
 
 // Get exchange list
 $response = $trading212->instrumentsMetadata->exchangeList();
@@ -30,7 +30,7 @@ More endpoints will be covered in future versions.
 * GET Exchange List        ✅
 * GET Instrument List      ✅
 
-### Pies
+### Pies (Deprecated)
 
 * GET Fetch all pies       ✅
 * POST Create pie          ✅
@@ -48,12 +48,10 @@ More endpoints will be covered in future versions.
 * GET Fetch by ID            ✅
 
 ### Account Data
-* GET Fetch account cash     ✅
-* GET Fetch account metadata ✅
+* GET Fetch account summary  ✅
 
-### Personal Portfolio
+### Positions
 * GET Fetch all open positions  ✅
-* GET Fetch a specific position ✅
 
 ### Historical items
 
