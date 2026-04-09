@@ -8,25 +8,25 @@ use DateTimeImmutable;
 
 readonly class Tax
 {
-    public function __construct(public string $fillId, public string $name, public float $quantity, public DateTimeImmutable $timeCharged,)
+    public function __construct(public DateTimeImmutable $chargedAt, public string $currency, public string $name, public float $quantity,)
     {
     }
 
     /**
      * @param array{
-     *     fillId: string,
+     *     chargedAt: string,
+     *     currency: string,
      *     name: string,
      *     quantity: float,
-     *     timeCharged: string,
      * } $data
      */
     public static function fromArray(array $data): self
     {
         return new self(
-            fillId: $data['fillId'],
+            chargedAt: new DateTimeImmutable($data['chargedAt']),
+            currency: $data['currency'],
             name: $data['name'],
             quantity: $data['quantity'],
-            timeCharged: new DateTimeImmutable($data['timeCharged']),
         );
     }
 }

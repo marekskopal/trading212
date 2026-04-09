@@ -42,7 +42,7 @@ final class PiesTest extends TestCase
             'piesResponse.json',
         ));
 
-        $pies = $pies->pies();
+        $pies = $pies->fetchAll();
 
         self::assertIsArray($pies);
         self::assertNotEmpty($pies);

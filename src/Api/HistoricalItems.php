@@ -36,7 +36,7 @@ readonly class HistoricalItems extends Trading212Api
     public function dividends(?int $cursor = null, ?string $ticker = null, int $limit = 20): Pagination
     {
         $response = $this->client->get(
-            path: '/api/v0/history/dividends',
+            path: '/api/v0/equity/history/dividends',
             queryParams: [
                 'cursor' => $cursor,
                 'ticker' => $ticker,
@@ -53,7 +53,7 @@ readonly class HistoricalItems extends Trading212Api
     public function exports(): array
     {
         $response = $this->client->get(
-            path: '/api/v0/history/exports',
+            path: '/api/v0/equity/history/exports',
             queryParams: [],
         );
 
@@ -67,7 +67,7 @@ readonly class HistoricalItems extends Trading212Api
         }
 
         $response = $this->client->post(
-            path: '/api/v0/history/exports',
+            path: '/api/v0/equity/history/exports',
             queryParams: [],
             body: $exportCsv,
         );
@@ -79,7 +79,7 @@ readonly class HistoricalItems extends Trading212Api
     public function transactionList(?int $cursor = null, int $limit = 20): Pagination
     {
         $response = $this->client->get(
-            path: '/api/v0/history/transactions',
+            path: '/api/v0/equity/history/transactions',
             queryParams: [
                 'cursor' => $cursor,
                 'limit' => $limit,

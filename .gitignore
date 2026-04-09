@@ -4,3 +4,5 @@ ray.php
 .phpunit.result.cache
 .idea
 composer.lock
+/.claude/
+/.playwright-mcp/

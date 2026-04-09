@@ -8,13 +8,19 @@ use DateTimeImmutable;
 
 readonly class Transaction
 {
-    public function __construct(public float $amount, public DateTimeImmutable $dateTime, public string $reference, public string $type,)
-    {
+    public function __construct(
+        public float $amount,
+        public ?string $currency,
+        public DateTimeImmutable $dateTime,
+        public string $reference,
+        public string $type,
+    ) {
     }
 
     /**
      * @param list<array{
      *     amount: float,
+     *     currency: string|null,
      *     dateTime: string,
      *     reference: string,
      *     type: string,
@@ -29,6 +35,7 @@ readonly class Transaction
     /**
      * @param array{
      *     amount: float,
+     *     currency: string|null,
      *     dateTime: string,
      *     reference: string,
      *     type: string,
@@ -38,6 +45,7 @@ readonly class Transaction
     {
         return new self(
             amount: $data['amount'],
+            currency: $data['currency'] ?? null,
             dateTime: new DateTimeImmutable($data['dateTime']),
             reference: $data['reference'],
             type: $data['type'],

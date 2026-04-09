@@ -1,25 +1,23 @@
 {
-    "items":[
+    "items": [
         {
-            "ticker":"O_US_EQ",
-            "reference":"3b1460f0-d5be-48c1-b0f9-8bf0c51b90f2",
-            "quantity":17.0000000000,
-            "amount":86.71,
-            "grossAmountPerShare":0.2630000000,
-            "amountInEuro":3.436509,
-            "paidOn":"2024-08-15T18:28:27.000+03:00",
-            "type":"DIVIDEND"
-        },
-        {
-            "ticker":"AAPL_US_EQ",
-            "reference":"6bddf78f-84e1-4036-9beb-fb24bd9feb17",
-            "quantity":8.8326871000,
-            "amount":42.83,
-            "grossAmountPerShare":0.2500000000,
-            "amountInEuro":1.698794,
-            "paidOn":"2024-08-15T18:04:36.000+03:00",
-            "type":"DIVIDEND"
+            "ticker": "O_US_EQ",
+            "reference": "3b1460f0-d5be-48c1-b0f9-8bf0c51b90f2",
+            "quantity": 17.0,
+            "amount": 86.71,
+            "grossAmountPerShare": 0.263,
+            "amountInEuro": 3.436509,
+            "currency": "USD",
+            "instrument": {
+                "currency": "USD",
+                "isin": "US7561091049",
+                "name": "Realty Income",
+                "ticker": "O_US_EQ"
+            },
+            "paidOn": "2024-08-15T18:28:27.000+03:00",
+            "tickerCurrency": "USD",
+            "type": "DIVIDEND"
         }
     ],
-    "nextPagePath":null
+    "nextPagePath": null
 }

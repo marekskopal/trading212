@@ -27,7 +27,7 @@ readonly class Pagination
     {
         /**
          * @var array{
-         *     items: array<mixed>,
+         *     items: list<array<string, scalar|array<string|int, scalar|array<string, scalar|null>|null>|null>>,
          *     nextPagePath: string|null,
          * } $responseContents
          */
@@ -39,7 +39,7 @@ readonly class Pagination
     /**
      * @param class-string<T> $dtoClass
      * @param array{
-     *     items: array<mixed>,
+     *     items: list<array<string, scalar|array<string|int, scalar|array<string, scalar|null>|null>|null>>,
      *     nextPagePath: string|null,
      * } $data
      * @return self<T>

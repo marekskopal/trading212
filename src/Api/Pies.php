@@ -11,7 +11,7 @@ use MarekSkopal\Trading212\Dto\Pies\PieItem;
 readonly class Pies extends Trading212Api
 {
     /** @return list<PieItem> */
-    public function pies(): array
+    public function fetchAll(): array
     {
         $response = $this->client->get(
             path: '/api/v0/equity/pies',

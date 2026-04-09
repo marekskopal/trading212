@@ -1,0 +1,16 @@
+{
+    "cash": {
+        "availableToTrade": 1000.50,
+        "inPies": 200.00,
+        "reservedForOrders": 50.00
+    },
+    "currency": "USD",
+    "id": 12345,
+    "investments": {
+        "currentValue": 5000.00,
+        "realizedProfitLoss": 300.00,
+        "totalCost": 4500.00,
+        "unrealizedProfitLoss": 500.00
+    },
+    "totalValue": 6250.50
+}

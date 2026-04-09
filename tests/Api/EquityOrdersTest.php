@@ -13,6 +13,7 @@ use MarekSkopal\Trading212\Dto\EquityOrders\MarketOrder;
 use MarekSkopal\Trading212\Dto\EquityOrders\Order;
 use MarekSkopal\Trading212\Dto\EquityOrders\StopLimitOrder;
 use MarekSkopal\Trading212\Dto\EquityOrders\StopOrder;
+use MarekSkopal\Trading212\Dto\Instrument;
 use MarekSkopal\Trading212\Enum\TimeValidityEnum;
 use MarekSkopal\Trading212\Tests\Fixtures\Client\ClientFixture;
 use MarekSkopal\Trading212\Trading212;
@@ -26,6 +27,7 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Config::class)]
 #[UsesClass(Trading212Api::class)]
 #[UsesClass(Order::class)]
+#[UsesClass(Instrument::class)]
 #[UsesClass(LimitOrder::class)]
 #[UsesClass(MarketOrder::class)]
 #[UsesClass(StopOrder::class)]

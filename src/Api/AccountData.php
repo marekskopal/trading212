@@ -4,28 +4,17 @@ declare(strict_types=1);
 
 namespace MarekSkopal\Trading212\Api;
 
-use MarekSkopal\Trading212\Dto\AccountData\AccountCash;
-use MarekSkopal\Trading212\Dto\AccountData\AccountMetadata;
+use MarekSkopal\Trading212\Dto\AccountData\AccountSummary;
 
 readonly class AccountData extends Trading212Api
 {
-    public function accountCash(): AccountCash
+    public function accountSummary(): AccountSummary
     {
         $response = $this->client->get(
-            path: '/api/v0/equity/account/cash',
+            path: '/api/v0/equity/account/summary',
             queryParams: [],
         );
 
-        return AccountCash::fromJson($response);
-    }
-
-    public function accountMetadata(): AccountMetadata
-    {
-        $response = $this->client->get(
-            path: '/api/v0/equity/account/info',
-            queryParams: [],
-        );
-
-        return AccountMetadata::fromJson($response);
+        return AccountSummary::fromJson($response);
     }
 }

@@ -5,37 +5,38 @@ declare(strict_types=1);
 namespace MarekSkopal\Trading212\Dto\PersonalPortfolio;
 
 use DateTimeImmutable;
-use MarekSkopal\Trading212\Enum\PositionsFrontendEnum;
+use MarekSkopal\Trading212\Dto\Instrument;
 
 /**
+ * @phpstan-import-type InstrumentType from Instrument
  * @phpstan-type PositionType array{
- *     averagePrice: float,
+ *     averagePricePaid: float,
+ *     createdAt: string,
  *     currentPrice: float,
- *     frontend: value-of<PositionsFrontendEnum>,
- *     fxPpl: float|null,
- *     initialFillDate: string,
- *     maxBuy: float,
- *     maxSell: float,
- *     pieQuantity: float,
- *     ppl: float,
+ *     instrument: InstrumentType,
  *     quantity: float,
- *     ticker: string,
+ *     quantityAvailableForTrading: float,
+ *     quantityInPies: float,
+ *     walletImpact: array{
+ *         currency: string,
+ *         currentValue: float,
+ *         fxImpact: float,
+ *         totalCost: float,
+ *         unrealizedProfitLoss: float,
+ *     },
  * }
  */
 readonly class Position
 {
     public function __construct(
-        public float $averagePrice,
+        public float $averagePricePaid,
+        public DateTimeImmutable $createdAt,
         public float $currentPrice,
-        public PositionsFrontendEnum $frontend,
-        public ?float $fxPpl,
-        public DateTimeImmutable $initialFillDate,
-        public float $maxBuy,
-        public float $maxSell,
-        public float $pieQuantity,
-        public float $ppl,
+        public Instrument $instrument,
         public float $quantity,
-        public string $ticker,
+        public float $quantityAvailableForTrading,
+        public float $quantityInPies,
+        public PositionWalletImpact $walletImpact,
     ) {
     }
 
@@ -60,17 +61,14 @@ readonly class Position
     public static function fromArray(array $data): self
     {
         return new self(
-            averagePrice: $data['averagePrice'],
+            averagePricePaid: $data['averagePricePaid'],
+            createdAt: new DateTimeImmutable($data['createdAt']),
             currentPrice: $data['currentPrice'],
-            frontend: PositionsFrontendEnum::from($data['frontend']),
-            fxPpl: $data['fxPpl'],
-            initialFillDate: new DateTimeImmutable($data['initialFillDate']),
-            maxBuy: $data['maxBuy'],
-            maxSell: $data['maxSell'],
-            pieQuantity: $data['pieQuantity'],
-            ppl: $data['ppl'],
+            instrument: Instrument::fromArray($data['instrument']),
             quantity: $data['quantity'],
-            ticker: $data['ticker'],
+            quantityAvailableForTrading: $data['quantityAvailableForTrading'],
+            quantityInPies: $data['quantityInPies'],
+            walletImpact: PositionWalletImpact::fromArray($data['walletImpact']),
         );
     }
 }

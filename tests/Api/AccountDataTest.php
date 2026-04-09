@@ -8,8 +8,9 @@ use MarekSkopal\Trading212\Api\AccountData;
 use MarekSkopal\Trading212\Api\Trading212Api;
 use MarekSkopal\Trading212\Client\Client;
 use MarekSkopal\Trading212\Config\Config;
-use MarekSkopal\Trading212\Dto\AccountData\AccountCash;
-use MarekSkopal\Trading212\Dto\AccountData\AccountMetadata;
+use MarekSkopal\Trading212\Dto\AccountData\AccountSummary;
+use MarekSkopal\Trading212\Dto\AccountData\Cash;
+use MarekSkopal\Trading212\Dto\AccountData\Investments;
 use MarekSkopal\Trading212\Tests\Fixtures\Client\ClientFixture;
 use MarekSkopal\Trading212\Trading212;
 use PHPUnit\Framework\Attributes\CoversClass;
@@ -21,29 +22,23 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Client::class)]
 #[UsesClass(Config::class)]
 #[UsesClass(Trading212Api::class)]
-#[UsesClass(AccountCash::class)]
-#[UsesClass(AccountMetadata::class)]
+#[UsesClass(AccountSummary::class)]
+#[UsesClass(Cash::class)]
+#[UsesClass(Investments::class)]
 final class AccountDataTest extends TestCase
 {
-    public function testAccountCash(): void
+    public function testAccountSummary(): void
     {
         $accountData = new AccountData(ClientFixture::createWithResponse(
-            'accountCashResponse.json',
+            'accountSummaryResponse.json',
         ));
 
-        $accountCash = $accountData->accountCash();
+        $accountSummary = $accountData->accountSummary();
 
-        self::assertInstanceOf(AccountCash::class, $accountCash);
-    }
-
-    public function testAccountMetadata(): void
-    {
-        $accountData = new AccountData(ClientFixture::createWithResponse(
-            'accountMetadataResponse.json',
-        ));
-
-        $accountMetadata = $accountData->accountMetadata();
-
-        self::assertInstanceOf(AccountMetadata::class, $accountMetadata);
+        self::assertInstanceOf(AccountSummary::class, $accountSummary);
+        self::assertSame('USD', $accountSummary->currency);
+        self::assertSame(12345, $accountSummary->id);
+        self::assertSame(1000.50, $accountSummary->cash->availableToTrade);
+        self::assertSame(5000.00, $accountSummary->investments->currentValue);
     }
 }

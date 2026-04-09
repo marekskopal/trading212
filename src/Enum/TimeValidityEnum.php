@@ -7,5 +7,5 @@ namespace MarekSkopal\Trading212\Enum;
 enum TimeValidityEnum: string
 {
     case Day = 'DAY';
-    case Gtc = 'GTC';
+    case GoodTillCancel = 'GOOD_TILL_CANCEL';
 }

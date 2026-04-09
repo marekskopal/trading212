@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace MarekSkopal\Trading212\Enum;
 
-enum PositionsFrontendEnum: string
+enum InitiatedFromEnum: string
 {
     case Api = 'API';
     case Ios = 'IOS';

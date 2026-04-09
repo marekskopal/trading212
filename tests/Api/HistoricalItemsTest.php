@@ -9,14 +9,18 @@ use MarekSkopal\Trading212\Api\HistoricalItems;
 use MarekSkopal\Trading212\Api\Trading212Api;
 use MarekSkopal\Trading212\Client\Client;
 use MarekSkopal\Trading212\Config\Config;
+use MarekSkopal\Trading212\Dto\EquityOrders\Order as EquityOrder;
 use MarekSkopal\Trading212\Dto\HistoricalItems\DataIncluded;
 use MarekSkopal\Trading212\Dto\HistoricalItems\Dividend;
 use MarekSkopal\Trading212\Dto\HistoricalItems\Export;
 use MarekSkopal\Trading212\Dto\HistoricalItems\ExportCsv;
+use MarekSkopal\Trading212\Dto\HistoricalItems\Fill;
+use MarekSkopal\Trading212\Dto\HistoricalItems\FillWalletImpact;
 use MarekSkopal\Trading212\Dto\HistoricalItems\Order;
 use MarekSkopal\Trading212\Dto\HistoricalItems\Report;
 use MarekSkopal\Trading212\Dto\HistoricalItems\Tax;
 use MarekSkopal\Trading212\Dto\HistoricalItems\Transaction;
+use MarekSkopal\Trading212\Dto\Instrument;
 use MarekSkopal\Trading212\Dto\Pagination;
 use MarekSkopal\Trading212\Exception\InvalidArgumentException;
 use MarekSkopal\Trading212\Tests\Fixtures\Client\ClientFixture;
@@ -31,7 +35,11 @@ use PHPUnit\Framework\TestCase;
 #[UsesClass(Config::class)]
 #[UsesClass(Trading212Api::class)]
 #[UsesClass(Order::class)]
+#[UsesClass(EquityOrder::class)]
+#[UsesClass(Fill::class)]
+#[UsesClass(FillWalletImpact::class)]
 #[UsesClass(Tax::class)]
+#[UsesClass(Instrument::class)]
 #[UsesClass(Pagination::class)]
 #[UsesClass(Dividend::class)]
 #[UsesClass(Export::class)]
