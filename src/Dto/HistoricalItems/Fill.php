@@ -18,7 +18,7 @@ use DateTimeImmutable;
  *         currency: string,
  *         fxRate: float,
  *         netValue: float,
- *         realisedProfitLoss: float,
+ *         realisedProfitLoss?: float,
  *         taxes: list<array{
  *             chargedAt: string,
  *             currency: string,

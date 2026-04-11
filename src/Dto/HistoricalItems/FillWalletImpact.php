@@ -11,7 +11,7 @@ readonly class FillWalletImpact
         public string $currency,
         public float $fxRate,
         public float $netValue,
-        public float $realisedProfitLoss,
+        public ?float $realisedProfitLoss,
         public array $taxes,
     ) {
     }
@@ -21,7 +21,7 @@ readonly class FillWalletImpact
      *     currency: string,
      *     fxRate: float,
      *     netValue: float,
-     *     realisedProfitLoss: float,
+     *     realisedProfitLoss?: float,
      *     taxes: list<array{
      *         chargedAt: string,
      *         currency: string,
@@ -36,7 +36,7 @@ readonly class FillWalletImpact
             currency: $data['currency'],
             fxRate: $data['fxRate'],
             netValue: $data['netValue'],
-            realisedProfitLoss: $data['realisedProfitLoss'],
+            realisedProfitLoss: $data['realisedProfitLoss'] ?? null,
             taxes: array_map(fn(array $tax) => Tax::fromArray($tax), $data['taxes']),
         );
     }
