@@ -6,6 +6,15 @@ namespace MarekSkopal\Trading212\Dto\HistoricalItems;
 
 use DateTimeImmutable;
 
+/**
+ * @phpstan-type TransactionType array{
+ *     amount: float,
+ *     currency: string|null,
+ *     dateTime: string,
+ *     reference: string,
+ *     type: string,
+ * }
+ */
 readonly class Transaction
 {
     public function __construct(
@@ -18,13 +27,7 @@ readonly class Transaction
     }
 
     /**
-     * @param list<array{
-     *     amount: float,
-     *     currency: string|null,
-     *     dateTime: string,
-     *     reference: string,
-     *     type: string,
-     * }> $data
+     * @param list<TransactionType> $data
      * @return list<Transaction>
      */
     public static function fromArrayList(array $data): array
@@ -32,15 +35,7 @@ readonly class Transaction
         return array_map(fn(array $order) => self::fromArray($order), $data);
     }
 
-    /**
-     * @param array{
-     *     amount: float,
-     *     currency: string|null,
-     *     dateTime: string,
-     *     reference: string,
-     *     type: string,
-     * } $data
-     */
+    /** @param TransactionType $data */
     public static function fromArray(array $data): self
     {
         return new self(

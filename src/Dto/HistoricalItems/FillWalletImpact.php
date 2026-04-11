@@ -4,6 +4,16 @@ declare(strict_types=1);
 
 namespace MarekSkopal\Trading212\Dto\HistoricalItems;
 
+/**
+ * @phpstan-import-type TaxType from Tax
+ * @phpstan-type FillWalletImpactType array{
+ *     currency: string,
+ *     fxRate: float,
+ *     netValue: float,
+ *     realisedProfitLoss?: float,
+ *     taxes: list<TaxType>,
+ * }
+ */
 readonly class FillWalletImpact
 {
     /** @param list<Tax> $taxes */
@@ -16,20 +26,7 @@ readonly class FillWalletImpact
     ) {
     }
 
-    /**
-     * @param array{
-     *     currency: string,
-     *     fxRate: float,
-     *     netValue: float,
-     *     realisedProfitLoss?: float,
-     *     taxes: list<array{
-     *         chargedAt: string,
-     *         currency: string,
-     *         name: string,
-     *         quantity: float,
-     *     }>,
-     * } $data
-     */
+    /** @param FillWalletImpactType $data */
     public static function fromArray(array $data): self
     {
         return new self(

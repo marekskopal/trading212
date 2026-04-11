@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 namespace MarekSkopal\Trading212\Dto\AccountData;
 
+/**
+ * @phpstan-type InvestmentsType array{
+ *     currentValue: float,
+ *     realizedProfitLoss: float,
+ *     totalCost: float,
+ *     unrealizedProfitLoss: float,
+ * }
+ */
 readonly class Investments
 {
     public function __construct(
@@ -14,14 +22,7 @@ readonly class Investments
     ) {
     }
 
-    /**
-     * @param array{
-     *     currentValue: float,
-     *     realizedProfitLoss: float,
-     *     totalCost: float,
-     *     unrealizedProfitLoss: float,
-     * } $data
-     */
+    /** @param InvestmentsType $data */
     public static function fromArray(array $data): self
     {
         return new self(

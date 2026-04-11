@@ -7,7 +7,22 @@ namespace MarekSkopal\Trading212\Dto\HistoricalItems;
 use DateTimeImmutable;
 use MarekSkopal\Trading212\Dto\Instrument;
 
-/** @phpstan-import-type InstrumentType from Instrument */
+/**
+ * @phpstan-import-type InstrumentType from Instrument
+ * @phpstan-type DividendType array{
+ *     amount: float,
+ *     amountInEuro: float,
+ *     currency: string|null,
+ *     grossAmountPerShare: float,
+ *     instrument: InstrumentType|null,
+ *     paidOn: string,
+ *     quantity: float,
+ *     reference: string,
+ *     ticker: string,
+ *     tickerCurrency: string|null,
+ *     type: string,
+ * }
+ */
 readonly class Dividend
 {
     public function __construct(
@@ -26,19 +41,7 @@ readonly class Dividend
     }
 
     /**
-     * @param list<array{
-     *     amount: float,
-     *     amountInEuro: float,
-     *     currency: string|null,
-     *     grossAmountPerShare: float,
-     *     instrument: InstrumentType|null,
-     *     paidOn: string,
-     *     quantity: float,
-     *     reference: string,
-     *     ticker: string,
-     *     tickerCurrency: string|null,
-     *     type: string,
-     * }> $data
+     * @param list<DividendType> $data
      * @return list<Dividend>
      */
     public static function fromArrayList(array $data): array
@@ -46,21 +49,7 @@ readonly class Dividend
         return array_map(fn(array $order) => self::fromArray($order), $data);
     }
 
-    /**
-     * @param array{
-     *     amount: float,
-     *     amountInEuro: float,
-     *     currency: string|null,
-     *     grossAmountPerShare: float,
-     *     instrument: InstrumentType|null,
-     *     paidOn: string,
-     *     quantity: float,
-     *     reference: string,
-     *     ticker: string,
-     *     tickerCurrency: string|null,
-     *     type: string,
-     * } $data
-     */
+    /** @param DividendType $data */
     public static function fromArray(array $data): self
     {
         return new self(

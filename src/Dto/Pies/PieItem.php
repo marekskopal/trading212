@@ -4,6 +4,18 @@ declare(strict_types=1);
 
 namespace MarekSkopal\Trading212\Dto\Pies;
 
+/**
+ * @phpstan-import-type DividendDetailType from DividendDetail
+ * @phpstan-import-type ResultType from Result
+ * @phpstan-type PieItemType array{
+ *     cash: float,
+ *     dividendDetails: DividendDetailType,
+ *     id: int,
+ *     progress: float|null,
+ *     result: ResultType,
+ *     status: string|null,
+ * }
+ */
 readonly class PieItem
 {
     public function __construct(
@@ -19,49 +31,13 @@ readonly class PieItem
     /** @return list<PieItem> */
     public static function fromJsonList(string $json): array
     {
-        /**
-         * @var list<array{
-         *     cash: float,
-         *     dividendDetails: array{
-         *         gained: float,
-         *         inCash: float,
-         *         reinvested: float,
-         *     },
-         *     id: int,
-         *     progress: float|null,
-         *     result: array{
-         *         investedValue: float,
-         *         result: float,
-         *         resultCoef: float,
-         *         value: float,
-         *     },
-         *     status: string|null,
-         *  }> $responseContents
-         */
+        /** @var list<PieItemType> $responseContents */
         $responseContents = json_decode($json, associative: true);
 
         return array_map(fn(array $exchange) => self::fromArray($exchange), $responseContents);
     }
 
-    /**
-     * @param array{
-     *     cash: float,
-     *     dividendDetails: array{
-     *         gained: float,
-     *         inCash: float,
-     *         reinvested: float,
-     *     },
-     *     id: int,
-     *     progress: float|null,
-     *     result: array{
-     *         investedValue: float,
-     *         result: float,
-     *         resultCoef: float,
-     *         value: float,
-     *     },
-     *     status: string|null,
-     *  } $data
-     */
+    /** @param PieItemType $data */
     public static function fromArray(array $data): self
     {
         return new self(

@@ -5,20 +5,13 @@ declare(strict_types=1);
 namespace MarekSkopal\Trading212\Dto\AccountData;
 
 /**
+ * @phpstan-import-type CashType from Cash
+ * @phpstan-import-type InvestmentsType from Investments
  * @phpstan-type AccountSummaryType array{
- *     cash: array{
- *         availableToTrade: float,
- *         inPies: float,
- *         reservedForOrders: float,
- *     },
+ *     cash: CashType,
  *     currency: string,
  *     id: int,
- *     investments: array{
- *         currentValue: float,
- *         realizedProfitLoss: float,
- *         totalCost: float,
- *         unrealizedProfitLoss: float,
- *     },
+ *     investments: InvestmentsType,
  *     totalValue: float,
  * }
  */

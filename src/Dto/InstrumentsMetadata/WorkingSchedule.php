@@ -4,6 +4,13 @@ declare(strict_types=1);
 
 namespace MarekSkopal\Trading212\Dto\InstrumentsMetadata;
 
+/**
+ * @phpstan-import-type TimeEventType from TimeEvent
+ * @phpstan-type WorkingScheduleType array{
+ *     id: int,
+ *     timeEvents: list<TimeEventType>,
+ * }
+ */
 readonly class WorkingSchedule
 {
     /** @param list<TimeEvent> $timeEvents */
@@ -11,15 +18,7 @@ readonly class WorkingSchedule
     {
     }
 
-    /**
-     * @param array{
-     *     id: int,
-     *     timeEvents: list<array{
-     *         date: string,
-     *         type: string,
-     *     }>,
-     *  } $data
-     */
+    /** @param WorkingScheduleType $data */
     public static function fromArray(array $data): self
     {
         return new self(

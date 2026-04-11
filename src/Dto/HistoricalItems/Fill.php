@@ -7,6 +7,7 @@ namespace MarekSkopal\Trading212\Dto\HistoricalItems;
 use DateTimeImmutable;
 
 /**
+ * @phpstan-import-type FillWalletImpactType from FillWalletImpact
  * @phpstan-type FillType array{
  *     filledAt: string|null,
  *     id: int|null,
@@ -14,18 +15,7 @@ use DateTimeImmutable;
  *     quantity: float|null,
  *     tradingMethod: string|null,
  *     type: string|null,
- *     walletImpact: array{
- *         currency: string,
- *         fxRate: float,
- *         netValue: float,
- *         realisedProfitLoss?: float,
- *         taxes: list<array{
- *             chargedAt: string,
- *             currency: string,
- *             name: string,
- *             quantity: float,
- *         }>,
- *     }|null,
+ *     walletImpact: FillWalletImpactType|null,
  * }
  */
 readonly class Fill

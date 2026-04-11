@@ -4,6 +4,14 @@ declare(strict_types=1);
 
 namespace MarekSkopal\Trading212\Dto\InstrumentsMetadata;
 
+/**
+ * @phpstan-import-type WorkingScheduleType from WorkingSchedule
+ * @phpstan-type ExchangeType array{
+ *     id: int,
+ *     name: string,
+ *     workingSchedules: list<WorkingScheduleType>,
+ * }
+ */
 readonly class Exchange
 {
     /** @param list<WorkingSchedule> $workingSchedules */
@@ -14,37 +22,13 @@ readonly class Exchange
     /** @return list<Exchange> */
     public static function fromJsonList(string $json): array
     {
-        /**
-         * @var list<array{
-         *     id: int,
-         *     name: string,
-         *     workingSchedules: list<array{
-         *         id: int,
-         *         timeEvents: list<array{
-         *             date: string,
-         *             type: string,
-         *         }>,
-         *     }>
-         *  }> $responseContents
-         */
+        /** @var list<ExchangeType> $responseContents */
         $responseContents = json_decode($json, associative: true);
 
         return array_map(fn(array $exchange) => self::fromArray($exchange), $responseContents);
     }
 
-    /**
-     * @param array{
-     *     id: int,
-     *     name: string,
-     *     workingSchedules: list<array{
-     *         id: int,
-     *         timeEvents: list<array{
-     *             date: string,
-     *             type: string,
-     *         }>,
-     *     }>
-     *  } $data
-     */
+    /** @param ExchangeType $data */
     public static function fromArray(array $data): self
     {
         return new self(

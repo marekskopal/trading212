@@ -9,6 +9,7 @@ use MarekSkopal\Trading212\Dto\Instrument;
 
 /**
  * @phpstan-import-type InstrumentType from Instrument
+ * @phpstan-import-type PositionWalletImpactType from PositionWalletImpact
  * @phpstan-type PositionType array{
  *     averagePricePaid: float,
  *     createdAt: string,
@@ -17,13 +18,7 @@ use MarekSkopal\Trading212\Dto\Instrument;
  *     quantity: float,
  *     quantityAvailableForTrading: float,
  *     quantityInPies: float,
- *     walletImpact: array{
- *         currency: string,
- *         currentValue: float,
- *         fxImpact: float,
- *         totalCost: float,
- *         unrealizedProfitLoss: float,
- *     },
+ *     walletImpact: PositionWalletImpactType,
  * }
  */
 readonly class Position

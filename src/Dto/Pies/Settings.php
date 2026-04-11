@@ -6,6 +6,20 @@ namespace MarekSkopal\Trading212\Dto\Pies;
 
 use DateTimeImmutable;
 
+/**
+ * @phpstan-type SettingsType array{
+ *     creationDate: string,
+ *     dividendCashAction: string,
+ *     endDate: string|null,
+ *     goal: int|null,
+ *     icon: string|null,
+ *     id: int,
+ *     initialInvestment: float|null,
+ *     instrumentShares: array<string, float>|null,
+ *     name: string,
+ *     publicUrl: string|null,
+ * }
+ */
 readonly class Settings
 {
     /** @param array<string, float> $instrumentShares */
@@ -23,20 +37,7 @@ readonly class Settings
     ) {
     }
 
-    /**
-     * @param array{
-     *     creationDate: string,
-     *     dividendCashAction: string,
-     *     endDate: string|null,
-     *     goal: int|null,
-     *     icon: string|null,
-     *     id: int,
-     *     initialInvestment: float|null,
-     *     instrumentShares: array<string, float>|null,
-     *     name: string,
-     *     publicUrl: string|null,
-     * } $data
-     */
+    /** @param SettingsType $data */
     public static function fromArray(array $data): self
     {
         return new self(
