@@ -8,7 +8,7 @@ readonly class Config
 {
     public function __construct(
         public string $apiKey,
-        public string $apiSecret,
+        public ?string $apiSecret = null,
         public bool $demo = false,
         public int $tooManyRequestsRepeat = 6,
         public int $tooManyRequestsWaitTime = 10,

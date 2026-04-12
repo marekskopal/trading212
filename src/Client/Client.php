@@ -99,11 +99,16 @@ readonly class Client implements ClientInterface
 
     private function addHeaders(RequestInterface $request): RequestInterface
     {
-        $credentials = base64_encode($this->config->apiKey . ':' . $this->config->apiSecret);
+        if ($this->config->apiSecret !== null) {
+            $credentials = base64_encode($this->config->apiKey . ':' . $this->config->apiSecret);
+            $authorization = 'Basic ' . $credentials;
+        } else {
+            $authorization = $this->config->apiKey;
+        }
 
         return $request
             ->withHeader('User-Agent', 'marekskopal/trading212-client:1.0.0')
-            ->withHeader('Authorization', 'Basic ' . $credentials)
+            ->withHeader('Authorization', $authorization)
             ->withHeader('Content-Type', 'application/json');
     }
 
